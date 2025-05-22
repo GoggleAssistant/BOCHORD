@@ -14,10 +14,14 @@ namespace LibraryManagementSystem
 {
     public partial class IssueBooks : UserControl
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\garet\OneDrive\Documents\library.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connect;
         public IssueBooks()
         {
             InitializeComponent();
+
+            string dbPath = System.IO.Path.Combine(Application.StartupPath, "Data", "library.mdf");
+string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=library;Integrated Security=True;";
+            connect = new SqlConnection(connectionString);
 
             displayBookIssueData();
             DataBookTitle();

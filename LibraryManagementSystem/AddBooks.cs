@@ -15,11 +15,14 @@ namespace LibraryManagementSystem
 {
     public partial class AddBooks : UserControl
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\garet\OneDrive\Documents\library.mdf;Integrated Security=True;Connect Timeout=30");
-
+        SqlConnection connect;
         public AddBooks()
         {
             InitializeComponent();
+
+            string dbPath = Path.Combine(Application.StartupPath, "Data", "library.mdf");
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=library;Integrated Security=True;";
+            connect = new SqlConnection(connectionString);
 
             displayBooks();
 
@@ -79,8 +82,9 @@ namespace LibraryManagementSystem
                             "(book_title, author, published_date, status, image, date_insert) " +
                             "VALUES(@bookTitle, @author, @published_date, @status, @image, @dateInsert)";
 
-                        string path = Path.Combine(@"C:\Users\garet\source\repos\LibraryManagementSystem\LibraryManagementSystem\Books_Directory\" +
-                            addBooks_bookTitle.Text + addBooks_author.Text.Trim() + ".jpg");
+                        string booksDir = Path.Combine(Application.StartupPath, "Books_Directory");
+                        string fileName = addBooks_bookTitle.Text.Trim() + addBooks_author.Text.Trim() + ".jpg";
+                        string path = Path.Combine(booksDir, fileName);
 
                         string directoryPath = Path.GetDirectoryName(path);
 

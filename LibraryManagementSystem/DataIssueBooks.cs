@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace LibraryManagementSystem
 {
     class DataIssueBooks
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\garet\OneDrive\Documents\library.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connect;
 
         public int ID { set; get; }
         public string IssueID { set; get; }
@@ -22,6 +23,13 @@ namespace LibraryManagementSystem
         public string DateIssue { set; get; }
         public string DateReturn { set; get; }
         public string Status { set; get; }
+
+        public DataIssueBooks()
+        {
+            string dbPath = System.IO.Path.Combine(Application.StartupPath, "Data", "library.mdf");
+string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=library;Integrated Security=True;";
+            connect = new SqlConnection(connectionString);
+        }
 
         public List<DataIssueBooks> IssueBooksData()
         {
