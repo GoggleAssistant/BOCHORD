@@ -77,7 +77,7 @@ namespace LibraryManagementSystem
                                     insertCMD.Parameters.AddWithValue("@email", register_email.Text.Trim());
                                     insertCMD.Parameters.AddWithValue("@username", register_username.Text.Trim());
                                     insertCMD.Parameters.AddWithValue("@password", register_password.Text.Trim());
-                                    insertCMD.Parameters.AddWithValue("@date", day.ToString());
+                                    insertCMD.Parameters.AddWithValue("@date", day);
 
                                     insertCMD.ExecuteNonQuery();
 
