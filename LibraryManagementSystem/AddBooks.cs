@@ -21,7 +21,7 @@ namespace LibraryManagementSystem
             InitializeComponent();
 
             string dbPath = Path.Combine(Application.StartupPath, "Data", "library.mdf");
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=library;Integrated Security=True;";
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;";
             connect = new SqlConnection(connectionString);
 
             displayBooks();

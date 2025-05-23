@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.IO;
 
 namespace LibraryManagementSystem
 {
@@ -26,8 +27,8 @@ namespace LibraryManagementSystem
 
         public DataIssueBooks()
         {
-            string dbPath = System.IO.Path.Combine(Application.StartupPath, "Data", "library.mdf");
-string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=library;Integrated Security=True;";
+            string dbPath = Path.Combine(Application.StartupPath, "Data", "library.mdf");
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;";
             connect = new SqlConnection(connectionString);
         }
 
