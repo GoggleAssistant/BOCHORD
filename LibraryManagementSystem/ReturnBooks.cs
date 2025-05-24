@@ -9,16 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace LibraryManagementSystem
 {
     public partial class ReturnBooks : UserControl
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\garet\OneDrive\Documents\library.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connect;
 
         public ReturnBooks()
         {
             InitializeComponent();
+
+            string dbPath = Path.Combine(Application.StartupPath, "Data", "library.mdf");
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;";
+            connect = new SqlConnection(connectionString);
 
             displayIssuedBooksData();
         }
